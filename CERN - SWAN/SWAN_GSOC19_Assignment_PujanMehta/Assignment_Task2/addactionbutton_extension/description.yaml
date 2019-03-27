@@ -1,0 +1,7 @@
+Type: Jupyter Notebook Extension
+Compatibility: 3.x, 4.x, 5.x, 6.x
+Name: Action Button
+Main: main.js
+Link: README.md
+Description: |
+  Adds an action button which redirects you to http://spark.apache.org/

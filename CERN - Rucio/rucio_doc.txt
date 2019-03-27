@@ -1,0 +1,44 @@
+// GET the auth token
+https://auth.globus.org/v2/oauth2/authorize?
+scope=urn:globus:auth:scope:auth.globus.org:view_identities+openid+email+profile&
+redirect_uri=https://auth.globus.org/v2/web/auth-code&
+response_type=code&
+client_id=080248eb-18a0-48c1-bad0-ed5120f840c9&
+code_challenge=itQeNtaQ7UDn8dQSbcxT9_KHPTSoj7-4O5k2B2Yy1x0&
+code_challenge_method=S256
+
+
+// Exchange on POST req
+https://auth.globus.org/v2/oauth2/token?
+code=DRO9EXgO5BVSjhmTeAasjZtr8s8ubN&
+redirect_uri=https://auth.globus.org/v2/web/auth-code&
+grant_type=authorization_code
+
+
+Is there any template or method that I need to keep in my while designing the transfer tool?
+Like what all methods will we require because Globus has many methods I will study those methods as required.
+I am just a bit doubtful about the design perspective like how should I go about it.
+
+Yes I will look into that.
+
+These were the things that I found we can provide:
+
+1) Authentication that globus does using OAuth2 here we will have to provide it a client id so the access / refresh tokens are given.
+2) Give users option to refresh their tokens.
+3) Get / Create / Activate / Update / Delete endpoints and GET Shared Endpoints list and option.
+(The 3rd point I feel can be unnecessary as the users might have already configured things as we just need to provide them an interface.)
+
+TASK SUBMISSION ASPECT:
+4) Submit Transfer where we will require the source and destination endpoint ids where we can return a task_id and submission_id.
+So here the submission_id --> is used to re-submit the task in case of any failures and the task_id --> is used to Monitor the task.
+5) Here we can also provide a service for Deletion at a particular endpoint but I feel it is unnecessary.
+
+TASK MONITORING ASPECT:
+6) Get a set of ongoing task list under a particular user this requires no inputs just the user authorization.
+7) Get event details of a particular task using the task_id where we can check whether the task was ACTIVE / FAILED / SUCCEEDED.
+9) Update a task where we can take update details like if the user wants to change the directory or filename given previously.
+9) Cancel a task this can also be done using the task_id it returns True in cases when the task has been Cancelled or the Transfer is successful.
+10) Pause a task which can done by using the task_id, the timeout required and the polling interval.
+11) Get info about the paused task using the task_id.
+12) Successful file transfers which we can get using the task_id and returns the info about the set of files that were transfered in that particular task.
+

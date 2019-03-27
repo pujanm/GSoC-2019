@@ -1,0 +1,4 @@
+**venv/
+**rucio/
+**spark-*/
+**.ipynb_checkpoints/

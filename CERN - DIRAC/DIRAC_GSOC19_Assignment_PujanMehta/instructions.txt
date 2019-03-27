@@ -1,0 +1,28 @@
+# Initial environment setup for all the tasks
+1) virtualenv -p /usr/bin/python2.7 venv
+2) source venv/bin/activate
+3) pip install -r requirements.txt
+
+# Task 1 Deliverables
+ - The python code is inisde task1.py
+ - The most important commands you ran for running it:
+    1) pytest task1.py
+    and the inital env setup commands can be considered as the most important ones.
+
+# Task 2 Deliverables
+ - The python code is inisde task2.py
+ - This test will fail. Why?
+    Ans: The test failed because there was no such method "aMethodToMock" inside the object 
+         so we had to create it and give it a "return_value" for the proper working.
+
+ - Can you fix this test? Just add 1 line of code, use ​ mock ​ .
+    Ans: Yes. I added the following line of code: "fakeObject.aMethodToMock.return_value = 3"
+
+# Task 3 Deliverables
+ - The python code of the module is inisde task3.py
+ - Command to run to create the json file: python task3.py
+
+# Task 4 Deliverables
+ - The python code of the module is inisde task4.py
+ - Command to run the python code of the test: pytest task4.py
+
